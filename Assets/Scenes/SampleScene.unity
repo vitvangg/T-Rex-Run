@@ -989,7 +989,6 @@ GameObject:
   - component: {fileID: 826416070}
   - component: {fileID: 826416075}
   - component: {fileID: 826416076}
-  - component: {fileID: 826416077}
   m_Layer: 0
   m_Name: Jacky
   m_TagString: Untagged
@@ -1098,7 +1097,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravity: 19
-  jumpForce: 8
+  jumpForce: 10
   animationSpeedMultiplier: 0.2
 --- !u!143 &826416076
 CharacterController:
@@ -1126,27 +1125,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &826416077
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 826416069}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.5957298, y: 1.5821488, z: 0.2}
-  m_Center: {x: 0.006791115, y: 0.013581395, z: 0}
 --- !u!1 &845365976
 GameObject:
   m_ObjectHideFlags: 0

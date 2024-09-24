@@ -64,9 +64,10 @@ public class GameManager : MonoBehaviour
         // Set up the game speed increase to 0
         gameSpeedIncrease = 0;
 
-        // Deactivate the obstacle spawner
+        // Deactivate the obstacle spawner                                   
         spawner.gameObject.SetActive(false);
     }
+
     public void GameStart()
     {
         // Hide game over UI elements
@@ -84,20 +85,9 @@ public class GameManager : MonoBehaviour
             // Hide game start UI elements and reset animation state
             gameStartText.gameObject.SetActive(false);
             animator.SetBool("isGameStarted", true);
+            
         }
 
-    }
-    public void GameOver()
-    {
-        gameSpeed = 0f;
-        enabled = false;
-        animator.SetBool("isGameOver", true);
-        /*player.gameObject.SetActive(false);*/
-        spawner.gameObject.SetActive(false);
-        gameOverText.gameObject.SetActive(true);
-        retryButton.gameObject.SetActive(true);
-        isGameOver = true;
-        UpdateHighScore();
     }
     public void NewGame()
     {
@@ -117,7 +107,7 @@ public class GameManager : MonoBehaviour
         player.gameObject.SetActive(true);
         spawner.gameObject.SetActive(true);
 
-        
+
         gameOverText.gameObject.SetActive(false);
         retryButton.gameObject.SetActive(false);
         // Reset the game over and dead animation state
@@ -125,6 +115,19 @@ public class GameManager : MonoBehaviour
         animator.SetBool("isGameStarted", true);
 
     }
+    public void GameOver()
+    {
+        gameSpeed = 0f;
+        enabled = false;
+        animator.SetBool("isGameOver", true);
+        /*player.gameObject.SetActive(false);*/
+        spawner.gameObject.SetActive(false);
+        gameOverText.gameObject.SetActive(true);
+        retryButton.gameObject.SetActive(true);
+        isGameOver = true;
+        UpdateHighScore();
+    }
+    
     private void Update()
     {
         if (!isGameOver)
@@ -133,8 +136,8 @@ public class GameManager : MonoBehaviour
             gameSpeed += gameSpeedIncrease * Time.deltaTime;
             score += gameSpeed * Time.deltaTime;
             scoreText.text = Mathf.FloorToInt(score).ToString("D5");
-        }
-        
+        } 
+       
     }
     private void UpdateHighScore()
     {

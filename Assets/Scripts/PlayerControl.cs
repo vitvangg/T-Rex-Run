@@ -5,9 +5,10 @@ public class PlayerController : MonoBehaviour
     private CharacterController character;
     private Vector3 direction;
     public float gravity = 9.81f * 2f;
-    public float jumpForce = 8f;
+    public float jumpForce = 10f;
     public float animationSpeedMultiplier = 0.2f;
     private Animator animator;
+   
 
     private void Awake()
     {
