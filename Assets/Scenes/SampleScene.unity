@@ -1097,7 +1097,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravity: 19
-  jumpForce: 10
+  jumpForce: 8
   animationSpeedMultiplier: 0.2
 --- !u!143 &826416076
 CharacterController:
@@ -1154,7 +1154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d5a92be038ff142a532d751b2ee9be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initalGameSpeed: 5
+  initalGameSpeed: 10
   gameSpeedIncrease: 0.1
   gameSpeed: 0
   animator: {fileID: 826416070}

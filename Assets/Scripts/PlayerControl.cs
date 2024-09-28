@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         float gameSpeed = GameManager.Instance.gameSpeed;
-        animator.speed = gameSpeed * animationSpeedMultiplier;
+        float runAnimationSpeed = gameSpeed * animationSpeedMultiplier;
 
         direction += Vector3.down * gravity * Time.deltaTime;
         if (!GameManager.Instance.isGameOver)
@@ -32,8 +32,10 @@ public class PlayerController : MonoBehaviour
             {
                 direction = Vector3.down;
                 animator.SetBool("isGrounded", true);
+                animator.speed = runAnimationSpeed;
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
+                    animator.speed = 1.0f;
                     direction = Vector3.up * jumpForce;
                     animator.SetBool("isGrounded", false);
                 }
@@ -42,7 +44,7 @@ public class PlayerController : MonoBehaviour
         // Check if the game is over
         if (GameManager.Instance.isGameOver)
         {
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 // Call the NewGame method to initialize the game
                 GameManager.Instance.NewGame();
@@ -55,6 +57,8 @@ public class PlayerController : MonoBehaviour
         // Check if the collider is tagged as an obstacle
         if (other.CompareTag("Obstade"))
         {
+            // Ngay l?p t?c chuy?n sang ho?t ?nh "Dead"
+            animator.SetTrigger("dead");
             // Trigger the GameOver method in the GameManager
             GameManager.Instance.GameOver();
         }

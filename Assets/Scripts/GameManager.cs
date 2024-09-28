@@ -85,7 +85,6 @@ public class GameManager : MonoBehaviour
             // Hide game start UI elements and reset animation state
             gameStartText.gameObject.SetActive(false);
             animator.SetBool("isGameStarted", true);
-            
         }
 
     }
@@ -118,9 +117,9 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         gameSpeed = 0f;
-        enabled = false;
         animator.SetBool("isGameOver", true);
-        /*player.gameObject.SetActive(false);*/
+        enabled = false;
+        
         spawner.gameObject.SetActive(false);
         gameOverText.gameObject.SetActive(true);
         retryButton.gameObject.SetActive(true);
