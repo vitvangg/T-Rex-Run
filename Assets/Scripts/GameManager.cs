@@ -7,12 +7,13 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public float initalGameSpeed = 5f; // toc do ban dau 
-    public float gameSpeedIncrease = 0.1f;
+    public float initalGameSpeed = 10f; // toc do ban dau 
+    public float gameSpeedIncrease = 0.5f;
     public float gameSpeed;
 
     private Spawner spawner;
     private PlayerController player;
+    private AudioManager audioManager;
 
     [Space(10)]
     // Animator component reference
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour
         {
             DestroyImmediate(gameObject);
         }
+        audioManager = GameObject.FindWithTag("Audio").GetComponent<AudioManager>();
     }
     private void OnDestroy()
     {
@@ -55,6 +57,7 @@ public class GameManager : MonoBehaviour
         // Hide the mouse cursor at the beginning of the game
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
 
         player = FindObjectOfType<PlayerController>();
         spawner = FindObjectOfType<Spawner>();
@@ -73,7 +76,7 @@ public class GameManager : MonoBehaviour
         // Hide game over UI elements
         gameOverText.gameObject.SetActive(false);
         retryButton.gameObject.SetActive(false);
-
+        
         UpdateHighScore();
 
         // Check if the initial jump has been performed and the game hasn't started yet
@@ -85,11 +88,13 @@ public class GameManager : MonoBehaviour
             // Hide game start UI elements and reset animation state
             gameStartText.gameObject.SetActive(false);
             animator.SetBool("isGameStarted", true);
+            
         }
 
     }
     public void NewGame()
     {
+        audioManager.PlayMusic(audioManager.musicClip);
         gameSpeedIncrease = 0.1f;
 
         // Deactivate the player to reset animation
@@ -117,6 +122,10 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         gameSpeed = 0f;
+        // D?ng nh?c khi game over
+        audioManager.musicAudioSource.Stop();
+
+        
         animator.SetBool("isGameOver", true);
         enabled = false;
         

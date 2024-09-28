@@ -10,10 +10,9 @@ public class Spawner : MonoBehaviour
         public GameObject prefab;
     }
     public SpawnersObject[] objects;
-    public float spawnRate = 3f;
+    public float spawnRate = 2f;
     public List<GameObject> spawnedPipes = new List<GameObject>();
 
-    
     private void Start()
     {
         InvokeRepeating(nameof(Spawn), spawnRate, spawnRate);

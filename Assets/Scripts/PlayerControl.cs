@@ -8,10 +8,12 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 10f;
     public float animationSpeedMultiplier = 0.2f;
     private Animator animator;
-   
+    private AudioManager audioManager;
+
 
     private void Awake()
     {
+        audioManager = GameObject.FindWithTag("Audio").GetComponent<AudioManager>();
         character = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
 
@@ -35,6 +37,7 @@ public class PlayerController : MonoBehaviour
                 animator.speed = runAnimationSpeed;
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
+                    audioManager.PlayJump(audioManager.jumpClip);
                     animator.speed = 1.0f;
                     direction = Vector3.up * jumpForce;
                     animator.SetBool("isGrounded", false);
@@ -59,6 +62,7 @@ public class PlayerController : MonoBehaviour
         {
             // Ngay l?p t?c chuy?n sang ho?t ?nh "Dead"
             animator.SetTrigger("dead");
+            audioManager.PlaySFX(audioManager.deadClip);
             // Trigger the GameOver method in the GameManager
             GameManager.Instance.GameOver();
         }
