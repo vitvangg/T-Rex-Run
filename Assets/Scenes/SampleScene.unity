@@ -851,7 +851,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.5
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -905,7 +905,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 0.1
-      minScalar: 0.01
+      minScalar: 0
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -958,7 +958,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.46666667, g: 0.5686275, b: 0.7411765, a: 0.7882353}
+      maxColor: {r: 0.8235294, g: 0.039128914, b: 0.9245283, a: 0.7882353}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -1022,8 +1022,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.15
-      minScalar: 0.8
+      scalar: 1
+      minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1399,7 +1399,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 2
+    type: 10
     angle: 25
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
@@ -5574,8 +5574,8 @@ Transform:
   m_GameObject: {fileID: 496048519}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.15000057, y: -0.23000002, z: 0}
-  m_LocalScale: {x: 0.8708799, y: 0.8708799, z: 0.8708799}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.4522754, y: 0.4522754, z: 0.4522754}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 826416074}
@@ -5908,7 +5908,7 @@ Transform:
   m_GameObject: {fileID: 826416069}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.7, y: -3.12, z: 0}
+  m_LocalPosition: {x: -15.86, y: -3.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5995,6 +5995,7 @@ MonoBehaviour:
   retryButton: {fileID: 1237809010}
   scoreText: {fileID: 87848522}
   highscoreText: {fileID: 246560091}
+  Hi: {fileID: 28472789}
   isGameStarted: 0
   isGameOver: 0
 --- !u!4 &845365978
@@ -6754,7 +6755,7 @@ Transform:
   m_GameObject: {fileID: 2146380749}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.8, y: -3.46, z: 0}
+  m_LocalPosition: {x: -15.94, y: -3.46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

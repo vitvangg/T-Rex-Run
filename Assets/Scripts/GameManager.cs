@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour
     // UI elements for displaying score and high score
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI highscoreText;
+    public TextMeshProUGUI Hi;
+
 
     public bool isGameStarted = false;
     public bool isGameOver = false;
@@ -60,6 +62,11 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
+        // Reset HighScore to 0 when the game starts
+        PlayerPrefs.DeleteKey("HighScore");
+        // Hide high score and "Hi" text
+        highscoreText.gameObject.SetActive(false);
+        Hi.gameObject.SetActive(false);
         player = FindObjectOfType<PlayerController>();
         spawner = FindObjectOfType<Spawner>();
         item = FindObjectOfType<CoinController>();
@@ -81,8 +88,6 @@ public class GameManager : MonoBehaviour
         gameOverText.gameObject.SetActive(false);
         retryButton.gameObject.SetActive(false);
 
-        UpdateHighScore();
-
         // Check if the initial jump has been performed and the game hasn't started yet
         if (Input.GetKeyDown(KeyCode.Space) && !isGameStarted)
         {
@@ -102,6 +107,10 @@ public class GameManager : MonoBehaviour
 
         // Deactivate the player to reset animation
         player.gameObject.SetActive(false);
+
+        // Reset the score to 0 when starting a new game
+        score = 0;
+        scoreText.text = Mathf.FloorToInt(score).ToString("D5");
 
         Pipe[] pipes = FindObjectsOfType<Pipe>();
         foreach (var pipe in pipes)
@@ -137,10 +146,11 @@ public class GameManager : MonoBehaviour
         item.gameObject.SetActive(false);
         gameOverText.gameObject.SetActive(true);
         retryButton.gameObject.SetActive(true);
+        Hi.gameObject.SetActive(true);
+        highscoreText.gameObject.SetActive(true);
         isGameOver = true;
         UpdateHighScore();
     }
-
     private void Update()
     {
         if (!isGameOver)

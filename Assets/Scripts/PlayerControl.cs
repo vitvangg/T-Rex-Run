@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
             if (isEatItem == true)
             {
                 Destroy(other.gameObject);
-                eatEffect.Stop();
+                eatEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
                 isEatItem = false;
             }
             else
