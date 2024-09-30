@@ -5,17 +5,19 @@ public class PlayerController : MonoBehaviour
     private CharacterController character;
     private Vector3 direction;
     public float gravity = 9.81f * 2f;
-    public float jumpForce = 10f;
+    public float jumpForce = 2f;
     public float animationSpeedMultiplier = 0.2f;
     private Animator animator;
     private AudioManager audioManager;
-
+    [SerializeField] ParticleSystem eatEffect;
+    private bool isEatItem = false;
 
     private void Awake()
     {
         audioManager = GameObject.FindWithTag("Audio").GetComponent<AudioManager>();
         character = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        eatEffect = GetComponentInChildren<ParticleSystem>();
 
     }
     private void OnEnable()
@@ -42,7 +44,7 @@ public class PlayerController : MonoBehaviour
                     direction = Vector3.up * jumpForce;
                     animator.SetBool("isGrounded", false);
                 }
-            } 
+            }
         }
         // Check if the game is over
         if (GameManager.Instance.isGameOver)
@@ -57,14 +59,37 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+
+        // Khi chạm vào item, nhân vật bay lên và game x2 tốc độ trong vài giây
+        if (other.CompareTag("item"))
+        {
+            eatEffect.Play();
+            animator.SetBool("isGrounded", true);
+            Destroy(other.gameObject);
+            audioManager.PlayItem(audioManager.itemClip);
+
+            // Bay lên
+            direction = Vector3.up * jumpForce * 2f; // Tăng lực nhảy
+            // Tăng tốc độ game gấp đôi
+            isEatItem = true;
+        }
         // Check if the collider is tagged as an obstacle
         if (other.CompareTag("Obstade"))
         {
-            // Ngay l?p t?c chuy?n sang ho?t ?nh "Dead"
-            animator.SetTrigger("dead");
-            audioManager.PlaySFX(audioManager.deadClip);
-            // Trigger the GameOver method in the GameManager
-            GameManager.Instance.GameOver();
+            if (isEatItem == true)
+            {
+                Destroy(other.gameObject);
+                eatEffect.Stop();
+                isEatItem = false;
+            }
+            else
+            {
+                // "Dead"
+                animator.SetTrigger("dead");
+                audioManager.PlaySFX(audioManager.deadClip);
+                // Trigger the GameOver method in the GameManager
+                GameManager.Instance.GameOver();
+            }
         }
     }
 }

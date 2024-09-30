@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public float gameSpeed;
 
     private Spawner spawner;
+    private CoinController item;
     private PlayerController player;
     private AudioManager audioManager;
 
@@ -39,7 +40,8 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-        } else
+        }
+        else
         {
             DestroyImmediate(gameObject);
         }
@@ -58,9 +60,10 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-
         player = FindObjectOfType<PlayerController>();
         spawner = FindObjectOfType<Spawner>();
+        item = FindObjectOfType<CoinController>();
+
         gameStartText.gameObject.SetActive(true);
 
         animator.SetBool("isGameStarted", false);
@@ -69,6 +72,7 @@ public class GameManager : MonoBehaviour
 
         // Deactivate the obstacle spawner                                   
         spawner.gameObject.SetActive(false);
+        item.gameObject.SetActive(false);
     }
 
     public void GameStart()
@@ -76,7 +80,7 @@ public class GameManager : MonoBehaviour
         // Hide game over UI elements
         gameOverText.gameObject.SetActive(false);
         retryButton.gameObject.SetActive(false);
-        
+
         UpdateHighScore();
 
         // Check if the initial jump has been performed and the game hasn't started yet
@@ -88,7 +92,6 @@ public class GameManager : MonoBehaviour
             // Hide game start UI elements and reset animation state
             gameStartText.gameObject.SetActive(false);
             animator.SetBool("isGameStarted", true);
-            
         }
 
     }
@@ -110,6 +113,7 @@ public class GameManager : MonoBehaviour
         enabled = true;
         player.gameObject.SetActive(true);
         spawner.gameObject.SetActive(true);
+        item.gameObject.SetActive(true);
 
 
         gameOverText.gameObject.SetActive(false);
@@ -125,17 +129,18 @@ public class GameManager : MonoBehaviour
         // D?ng nh?c khi game over
         audioManager.musicAudioSource.Stop();
 
-        
+
         animator.SetBool("isGameOver", true);
         enabled = false;
-        
+
         spawner.gameObject.SetActive(false);
+        item.gameObject.SetActive(false);
         gameOverText.gameObject.SetActive(true);
         retryButton.gameObject.SetActive(true);
         isGameOver = true;
         UpdateHighScore();
     }
-    
+
     private void Update()
     {
         if (!isGameOver)
@@ -144,8 +149,8 @@ public class GameManager : MonoBehaviour
             gameSpeed += gameSpeedIncrease * Time.deltaTime;
             score += gameSpeed * Time.deltaTime;
             scoreText.text = Mathf.FloorToInt(score).ToString("D5");
-        } 
-       
+        }
+
     }
     private void UpdateHighScore()
     {

@@ -12,7 +12,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip musicClip;
     public AudioClip deadClip;
     public AudioClip jumpClip;
-    /*public AudioClip downClip;*/
+    public AudioClip itemClip;
 
     void Start()
     {
@@ -34,9 +34,9 @@ public class AudioManager : MonoBehaviour
         vfxAudioSource.clip = jumpClip;
         vfxAudioSource.Play();
     }
-    /*public void PlayDown(AudioClip downClip)
+    public void PlayItem(AudioClip itemClip)
     {
-        vfxAudioSource.clip = downClip;
+        vfxAudioSource.clip = itemClip;
         vfxAudioSource.Play();
-    }*/
+    }
 }

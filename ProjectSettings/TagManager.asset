@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Obstacle
   - Audio
+  - Obstade
+  - item
+  - Effect
   layers:
   - Default
   - TransparentFX
